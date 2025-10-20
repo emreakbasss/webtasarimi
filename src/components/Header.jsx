@@ -80,6 +80,20 @@ export default function Header(){
       return () => clearTimeout(timer)
     }
   }, [open])
+
+  // Close search when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchOpen && !event.target.closest('.search-container')) {
+        setSearchOpen(false)
+      }
+    }
+
+    if (searchOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [searchOpen])
   
   const onSearch=(e)=>{
     e.preventDefault()
@@ -109,19 +123,19 @@ export default function Header(){
         </a>
         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
           <div className="relative">
-          <a 
-            href="#/sepet"
-            className="p-1 sm:p-2 hover:text-brand relative"
-            aria-label="Sepetim"
-          >
-            <IconCart/>
-            {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
-                {cartCount}
-              </span>
-            )}
-          </a>
-        </div>
+            <a
+              href="#/sepet"
+              className="p-1 sm:p-2 hover:text-brand relative"
+              aria-label="Sepetim"
+            >
+              <IconCart/>
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  {cartCount}
+                </span>
+              )}
+            </a>
+          </div>
           <div className="relative">
             <button className="p-1 sm:p-2 hover:text-brand" onClick={()=>setAccountOpen(v=>!v)} aria-label="Hesap"><IconUser/></button>
             <div className={`${accountOpen?'opacity-100 translate-y-0 pointer-events-auto':'opacity-0 -translate-y-1 pointer-events-none'} transition absolute right-0 mt-2 w-56 bg-white border border-neutral-200 rounded-xl shadow-header`}
@@ -135,22 +149,21 @@ export default function Header(){
               </ul>
             </div>
           </div>
-          <button className="p-1 sm:p-2 hover:text-brand" aria-label="Ara" onClick={()=>setSearchOpen(v=>!v)}><IconSearch/></button>
+          <div className="relative search-container">
+            <button className="p-1 sm:p-2 hover:text-brand" aria-label="Ara" onClick={()=>setSearchOpen(v=>!v)}><IconSearch/></button>
+            {searchOpen && (
+              <div className="absolute right-0 top-full mt-2 w-64 bg-white border border-neutral-200 rounded-xl shadow-header p-3 z-50">
+                <form onSubmit={(e)=>{onSearch(e);setSearchOpen(false)}} className="flex items-center gap-2">
+                  <IconSearch/>
+                  <input name="q" placeholder="Ürün ara..." className="flex-1 outline-none text-sm"/>
+                  <button className="btn btn-outline text-xs px-3 py-1" type="submit">Ara</button>
+                </form>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {/* Secondary controls row removed per new layout */}
-      {/* Mobile search popover */}
-      {searchOpen && (
-        <div className="border-t border-neutral-200 md:hidden">
-          <div className="container py-2">
-            <form onSubmit={(e)=>{onSearch(e);setSearchOpen(false)}} className="flex items-center gap-2 border border-neutral-300 rounded-xl px-3 py-2">
-              <IconSearch/>
-              <input name="q" placeholder="Arama" className="w-full outline-none"/>
-              <button className="btn btn-outline" type="submit">Ara</button>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* Dropdown */}
       <div className={`${open? 'max-h-[900px] py-4 sm:py-6':'max-h-0'} overflow-hidden transition-all border-t border-neutral-200 bg-white/95 backdrop-blur shadow-header relative z-40`}> 

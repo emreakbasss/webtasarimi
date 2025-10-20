@@ -316,46 +316,71 @@ export default function Koleksiyon(){
             <button className="btn btn-outline" onClick={()=>setFilter('hepsi')}>Hepsi</button>
             <button className="btn btn-outline" onClick={()=>setFilter('bordo')}>Bordo</button>
             <button className="btn btn-outline" onClick={()=>setFilter('gri')}>Gri</button>
-            {q && <span className="muted">Arama: "{q}"</span>}
+            {q && (
+              <div className="flex items-center gap-2">
+                <span className="muted">Arama:</span>
+                <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-sm font-medium">"{q}"</span>
+                <button 
+                  onClick={() => window.location.hash = '#/koleksiyon'}
+                  className="text-gray-500 hover:text-gray-700 text-sm"
+                >
+                  ✕ Temizle
+                </button>
+              </div>
+            )}
           </div>
           <div className="grid grid-4" style={{marginTop:16}}>
-            {items.map((it)=> (
-              <div key={it.id} className="card hover-scale">
-                <div className="aspect-3-4">
-                  {it.image ? (
-                    <img 
-                      className="img-rect cursor-pointer" 
-                      src={it.image} 
-                      alt={it.name}
-                      onClick={() => handleImageClick(it)}
-                      style={it.name === 'Aurora GM-01A' ? {
-                        objectPosition: '20% center',
-                        transform: 'scale(1.1)',
-                        transformOrigin: 'left center'
-                      } : {}}
-                    />
-                  ) : (
-                    <div className="img-rect flex items-center justify-center bg-gray-100">
-                      <div className="text-center">
-                        <div className="text-4xl mb-2">🔮</div>
-                        <div className="text-gray-500 font-semibold">Yakında</div>
+            {items.length === 0 ? (
+              <div className="col-span-full text-center py-16 bg-gray-50 rounded-xl">
+                <div className="text-6xl mb-4">🔍</div>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-2">Arama sonucu bulunamadı</h2>
+                <p className="text-gray-600 mb-6">"{q}" için sonuç bulunamadı. Farklı bir terim deneyin.</p>
+                <button 
+                  onClick={() => window.location.hash = '#/koleksiyon'}
+                  className="btn bg-red-600 hover:bg-red-700 text-white"
+                >
+                  Tüm Ürünleri Gör
+                </button>
+              </div>
+            ) : (
+              items.map((it)=> (
+                <div key={it.id} className="card hover-scale">
+                  <div className="aspect-3-4">
+                    {it.image ? (
+                      <img
+                        className="img-rect cursor-pointer"
+                        src={it.image}
+                        alt={it.name}
+                        onClick={() => handleImageClick(it)}
+                        style={it.name === 'Aurora GM-01A' ? {
+                          objectPosition: '20% center',
+                          transform: 'scale(1.1)',
+                          transformOrigin: 'left center'
+                        } : {}}
+                      />
+                    ) : (
+                      <div className="img-rect flex items-center justify-center bg-gray-100">
+                        <div className="text-center">
+                          <div className="text-4xl mb-2">🔮</div>
+                          <div className="text-gray-500 font-semibold">Yakında</div>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-                <div style={{padding:'12px 14px'}}>
-                  <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                    <span>{it.name}</span>
-                    {it.color !== 'coming-soon' && (
-                      <span className="brand-text" style={{textTransform:'capitalize'}}>{it.color}</span>
                     )}
                   </div>
-                  {it.description && (
-                    <div className="muted" style={{marginTop:6,fontSize:12}}>{it.description}</div>
-                  )}
+                  <div style={{padding:'12px 14px'}}>
+                    <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                      <span>{it.name}</span>
+                      {it.color !== 'coming-soon' && (
+                        <span className="brand-text" style={{textTransform:'capitalize'}}>{it.color}</span>
+                      )}
+                    </div>
+                    {it.description && (
+                      <div className="muted" style={{marginTop:6,fontSize:12}}>{it.description}</div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
