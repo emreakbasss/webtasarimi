@@ -35,7 +35,6 @@ export default function SocialHub(){
           <SocialCard platform="Instagram" handle="@you.brand" cover="https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1400&auto=format&fit=crop" href="https://instagram.com/" cta="Instagram'da Gör"/>
           <SocialCard platform="TikTok" handle="@you.brand" cover="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop" href="https://www.tiktok.com/" cta="TikTok'ta Gör"/>
         </div>
-        <p className="muted" style={{marginTop:8,fontSize:12}}>Not: Gerçek feed embed isterseniz, platformların resmi oEmbed/SDK’leri ile entegre edebiliriz.</p>
       </div>
     </section>
   )
