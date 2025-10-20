@@ -2,6 +2,8 @@ import React from 'react'
 import Router from './Router.jsx'
 import Home from './pages/Home.jsx'
 import Koleksiyon from './pages/Koleksiyon.jsx'
+import Sepet from './pages/Sepet.jsx'
+import Odeme from './pages/Odeme.jsx'
 import Giris from './pages/Giris.jsx'
 import Hesap from './pages/Hesap.jsx'
 import Cuzdan from './pages/Cuzdan.jsx'
@@ -17,6 +19,8 @@ export default function App(){
   const routes={
     '/': Home,
     '/koleksiyon': Koleksiyon,
+    '/sepet': Sepet,
+    '/odeme': Odeme,
     '/giris': Giris,
     '/hesap': Hesap,
     '/cuzdan': Cuzdan,

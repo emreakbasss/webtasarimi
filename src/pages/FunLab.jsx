@@ -47,17 +47,41 @@ function MiniGames(){
 
 export default function FunLab(){
   const initialTab=(()=>{
-    const qs=new URLSearchParams(window.location.hash.split('?')[1]||'')
-    return qs.get('tab')||'challenges'
+    const hash = window.location.hash || '#/funlab'
+    const queryString = hash.split('?')[1] || ''
+    const qs = new URLSearchParams(queryString)
+    return qs.get('tab') || 'challenges'
   })()
   const [tab,setTab]=useState(initialTab)
+  
+  // Update tab when URL changes
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash || '#/funlab'
+      const queryString = hash.split('?')[1] || ''
+      const qs = new URLSearchParams(queryString)
+      const newTab = qs.get('tab') || 'challenges'
+      setTab(newTab)
+    }
+    
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+  
+  const handleTabChange = (newTab) => {
+    setTab(newTab)
+    // Update URL without page reload
+    const currentHash = window.location.hash.split('?')[0] || '#/funlab'
+    window.location.hash = `${currentHash}?tab=${newTab}`
+  }
+  
   return (
     <main>
       <section className="section">
         <div className="container">
           <h1 style={{margin:0,fontSize:36}}>FUN LAB</h1>
           <p className="muted" style={{marginTop:8}}>Challenge'lar ve mini oyunlar.</p>
-          <div style={{marginTop:16}}><TabNav active={tab} onChange={setTab}/></div>
+          <div style={{marginTop:16}}><TabNav active={tab} onChange={handleTabChange}/></div>
           <div style={{marginTop:16}}>
             {tab==='challenges' && <Challenges/>}
             {tab==='minigames' && <MiniGames/>}

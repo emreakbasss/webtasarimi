@@ -46,9 +46,40 @@ export default function Header(){
   const [accountOpen,setAccountOpen]=useState(false)
   const [searchOpen,setSearchOpen]=useState(false)
   const [contactOpen,setContactOpen]=useState(false)
+  const [cartCount, setCartCount] = useState(0)
+  const [cartItems, setCartItems] = useState([])
+  const [cartOpen, setCartOpen] = useState(false)
   
   // Menu stays open until manually closed
   // Removed scroll event listener for better UX
+  
+  // Listen for cart updates and load initial count
+  useEffect(() => {
+    // Load initial cart count from localStorage
+    const savedCount = parseInt(localStorage.getItem('cartCount') || '0')
+    setCartCount(savedCount)
+    
+    const handleCartUpdate = (event) => {
+      setCartCount(event.detail.count)
+      if (event.detail.item) {
+        setCartItems(prev => [...prev, event.detail.item])
+      }
+    }
+    
+    window.addEventListener('cartUpdate', handleCartUpdate)
+    return () => window.removeEventListener('cartUpdate', handleCartUpdate)
+  }, [])
+
+  // Auto-close menu after 5 seconds of inactivity
+  useEffect(() => {
+    if (open) {
+      const timer = setTimeout(() => {
+        setOpen(false)
+      }, 5000) // 5 seconds
+      
+      return () => clearTimeout(timer)
+    }
+  }, [open])
   
   const onSearch=(e)=>{
     e.preventDefault()
@@ -59,21 +90,38 @@ export default function Header(){
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-200 shadow-header">
       {/* Single row header: centered logo */}
-      <div className="container grid grid-cols-3 items-center py-2 sm:py-3">
-        <div className="justify-self-start relative">
-          <button className="text-xs sm:text-sm underline underline-offset-4" onClick={()=>setContactOpen(v=>!v)}>+ Contact Us</button>
-          <div className={`${contactOpen?'opacity-100 translate-y-0 pointer-events-auto':'opacity-0 -translate-y-1 pointer-events-none'} transition absolute left-0 mt-2 w-72 bg-white border border-neutral-200 rounded-xl shadow-header p-3`} onMouseLeave={()=>setContactOpen(false)}>
+      <div className="container flex items-center justify-between py-2 sm:py-3">
+        <div className="flex items-center gap-4 relative">
+          <button aria-label="Menü" className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg border border-neutral-200 flex items-center gap-1 sm:gap-2" onClick={()=>setOpen(v=>!v)}>
+            <IconMenu/> <span className="text-xs sm:text-sm">MENÜ</span>
+          </button>
+          <button className="text-xs sm:text-sm underline underline-offset-4" onClick={()=>setContactOpen(v=>!v)}>+ İletişim</button>
+          <div className={`${contactOpen?'opacity-100 translate-y-0 pointer-events-auto':'opacity-0 translate-y-1 pointer-events-none'} transition absolute left-16 top-full mt-2 w-72 bg-white border border-neutral-200 rounded-xl shadow-header p-3 z-50`} onMouseLeave={()=>setContactOpen(false)}>
             <div style={{fontSize:12,color:'var(--muted)'}}>Instagram</div>
             <div style={{padding:'6px 0',borderBottom:'1px solid var(--border)'}}>@</div>
             <div style={{fontSize:12,color:'var(--muted)',marginTop:8}}>İletişim Numarası</div>
             <div style={{padding:'6px 0'}}>+90</div>
           </div>
         </div>
-        <a href="#/" className="justify-self-center flex items-center">
+        
+        <a href="#/" className="flex items-center">
           <img src="./assets/logo-you1.png" alt="YOU" className="h-8 sm:h-10 md:h-12 lg:h-14" onError={(e)=>{e.currentTarget.style.display='none'}}/>
         </a>
-        <div className="justify-self-end flex items-center gap-1 sm:gap-2 md:gap-3">
-          <a href="#/sepet" aria-label="Sepetim" className="p-1 sm:p-2 hover:text-brand"><IconCart/></a>
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+          <div className="relative">
+          <a 
+            href="#/sepet"
+            className="p-1 sm:p-2 hover:text-brand relative"
+            aria-label="Sepetim"
+          >
+            <IconCart/>
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                {cartCount}
+              </span>
+            )}
+          </a>
+        </div>
           <div className="relative">
             <button className="p-1 sm:p-2 hover:text-brand" onClick={()=>setAccountOpen(v=>!v)} aria-label="Hesap"><IconUser/></button>
             <div className={`${accountOpen?'opacity-100 translate-y-0 pointer-events-auto':'opacity-0 -translate-y-1 pointer-events-none'} transition absolute right-0 mt-2 w-56 bg-white border border-neutral-200 rounded-xl shadow-header`}
@@ -88,9 +136,6 @@ export default function Header(){
             </div>
           </div>
           <button className="p-1 sm:p-2 hover:text-brand" aria-label="Ara" onClick={()=>setSearchOpen(v=>!v)}><IconSearch/></button>
-          <button aria-label="Menü" className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg border border-neutral-200 flex items-center gap-1 sm:gap-2" onClick={()=>setOpen(v=>!v)}>
-            <IconMenu/> <span className="text-xs sm:text-sm">MENÜ</span>
-          </button>
         </div>
       </div>
       {/* Secondary controls row removed per new layout */}
