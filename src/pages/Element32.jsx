@@ -20,7 +20,7 @@ export default function Element32(){
         <div className="container">
           <div className="card shadow" style={{overflow:'hidden'}}>
             <div style={{padding:12}}>
-              <FallbackImage base="/assets/element32/element32" alt="Element 32"/>
+              <FallbackImage base="/assets/element32/Element32" alt="Element 32"/>
             </div>
           </div>
         </div>
