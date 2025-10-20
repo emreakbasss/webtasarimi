@@ -47,19 +47,8 @@ export default function Header(){
   const [searchOpen,setSearchOpen]=useState(false)
   const [contactOpen,setContactOpen]=useState(false)
   
-  // Scroll event listener for closing menu
-  useEffect(() => {
-    const handleScroll = () => {
-      if (open) {
-        setOpen(false)
-      }
-    }
-    
-    if (open) {
-      window.addEventListener('scroll', handleScroll, { passive: true })
-      return () => window.removeEventListener('scroll', handleScroll)
-    }
-  }, [open])
+  // Menu stays open until manually closed
+  // Removed scroll event listener for better UX
   
   const onSearch=(e)=>{
     e.preventDefault()
@@ -119,8 +108,8 @@ export default function Header(){
       )}
 
       {/* Dropdown */}
-      <div className={`${open? 'max-h-[900px] py-6':'max-h-0'} overflow-hidden transition-all border-t border-neutral-200 bg-white/95 backdrop-blur md:block shadow-header`}> 
-        <div className="container grid md:grid-cols-4 gap-8">
+      <div className={`${open? 'max-h-[900px] py-4 sm:py-6':'max-h-0'} overflow-hidden transition-all border-t border-neutral-200 bg-white/95 backdrop-blur shadow-header relative z-40`}> 
+        <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           <MenuGroup boxed title="ELEMENT 32" items={[
             {label:'Element 32', href:'#/element32'},
           ]}/>
