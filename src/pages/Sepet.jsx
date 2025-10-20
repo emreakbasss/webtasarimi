@@ -155,7 +155,7 @@ export default function Sepet() {
                 
                    <div className="mt-6 space-y-3">
                      <button 
-                       className="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg font-semibold text-lg"
+                       className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg min-zoom-safe"
                        onClick={() => {
                          window.location.hash = '#/odeme'
                        }}
@@ -164,7 +164,7 @@ export default function Sepet() {
                      </button>
                   <button 
                     onClick={clearCart}
-                    className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-6 rounded-lg font-medium"
+                    className="w-full bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white py-3 px-6 rounded-lg font-semibold text-base transition-all transform hover:scale-105 shadow-lg min-zoom-safe"
                   >
                     Sepeti Temizle
                   </button>

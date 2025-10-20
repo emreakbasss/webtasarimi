@@ -548,10 +548,10 @@ export default function Odeme() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`px-8 py-4 rounded-lg font-semibold text-lg transition-colors ${
+              className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg min-zoom-safe ${
                 isSubmitting
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-red-600 hover:bg-red-700'
+                  : 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800'
               } text-white`}
             >
               {isSubmitting ? 'İşleniyor...' : 'Siparişi Tamamla'}

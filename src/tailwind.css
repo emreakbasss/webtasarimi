@@ -8,6 +8,12 @@
     --gray:#c0c0c0;
   }
   body{ @apply text-neutral-900 bg-white; }
+  
+  /* Yakınlaştırma seviyeleri için minimum boyutlar */
+  .zoom-safe {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+  }
 }
 
 @layer components{
@@ -19,7 +25,7 @@
   .animate-slideIn{
     animation: slideIn 0.3s ease-out;
   }
-  
+
   @keyframes slideIn{
     from{
       transform: translateX(100%);
@@ -29,6 +35,102 @@
       transform: translateX(0);
       opacity: 1;
     }
+  }
+  
+  /* Yakınlaştırma güvenli boyutlar */
+  .min-zoom-safe {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+  }
+}
+
+/* Modal responsive styles - Ortalama çözüm */
+@media (max-width: 900px) {
+  .modal-responsive {
+    flex-direction: column !important;
+  }
+  
+  .modal-responsive > div {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  .modal-responsive .text-3xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .modal-responsive .text-xl {
+    font-size: 1rem !important;
+  }
+  
+  .modal-responsive .text-lg {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-responsive {
+    max-width: 95vw !important;
+    margin: 0 auto !important;
+  }
+  
+  .modal-responsive .p-6 {
+    padding: 0.75rem !important;
+  }
+  
+  .modal-responsive .gap-3 {
+    gap: 0.5rem !important;
+  }
+  
+  .modal-responsive .py-4 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  .modal-responsive .px-6 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  /* Konum bilgisi için kompakt spacing */
+  .modal-responsive .space-y-4 > * + * {
+    margin-top: 0.5rem !important;
+  }
+  
+  .modal-responsive .space-y-3 > * + * {
+    margin-top: 0.25rem !important;
+  }
+  
+  .modal-responsive .mb-6 {
+    margin-bottom: 1rem !important;
+  }
+  
+  .modal-responsive .mb-4 {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .modal-responsive .mb-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Butonlar için kompakt boyutlar */
+  .modal-responsive .py-4 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  .modal-responsive .px-6 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  /* Text boyutları daha da küçük */
+  .modal-responsive .text-sm {
+    font-size: 0.75rem !important;
+  }
+  
+  .modal-responsive .text-xs {
+    font-size: 0.65rem !important;
   }
 }
 

@@ -53,10 +53,10 @@ function Modal({isOpen, onClose, image, title, setToastMessage, setShowToast}){
       className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
-      <div 
-        className="relative w-full max-w-6xl max-h-[95vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex"
-        onClick={(e) => e.stopPropagation()}
-      >
+             <div
+               className="relative w-full max-w-5xl max-h-[98vh] bg-white rounded-2xl shadow-2xl overflow-y-auto flex flex-col lg:flex-row modal-responsive"
+               onClick={(e) => e.stopPropagation()}
+             >
         <button 
           className="absolute top-6 right-6 z-20 bg-white hover:bg-gray-50 rounded-full p-3 shadow-lg transition-colors"
           onClick={onClose}
@@ -67,8 +67,8 @@ function Modal({isOpen, onClose, image, title, setToastMessage, setShowToast}){
           </svg>
         </button>
         
-        {/* Sol taraf - Ürün bilgileri */}
-        <div className="w-1/2 p-8 flex flex-col justify-between">
+               {/* Sol taraf - Ürün bilgileri */}
+               <div className="w-full lg:w-1/2 p-6 lg:p-8 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
@@ -149,61 +149,61 @@ function Modal({isOpen, onClose, image, title, setToastMessage, setShowToast}){
             </div>
           </div>
           
-          <div className="space-y-4">
-            <div className="flex gap-3">
-              <button 
-                className="flex-1 bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  
-                  // Get current cart count from localStorage
-                  const currentCount = parseInt(localStorage.getItem('cartCount') || '0')
-                  
-                  // Save cart items to localStorage
-                  const currentItems = JSON.parse(localStorage.getItem('cartItems') || '[]')
-                  
-                  // Check if item already exists
-                  const existingItemIndex = currentItems.findIndex(item => item.name === title)
-                  
-                  let updatedItems
-                  if (existingItemIndex !== -1) {
-                    // Item exists, increase quantity
-                    updatedItems = [...currentItems]
-                    updatedItems[existingItemIndex].quantity = (updatedItems[existingItemIndex].quantity || 1) + 1
-                  } else {
-                    // New item, add to cart
-                    const newItem = { name: title, image: image, quantity: 1, price: product.price }
-                    updatedItems = [...currentItems, newItem]
-                  }
-                  
-                  localStorage.setItem('cartItems', JSON.stringify(updatedItems))
-                  
-                  // Calculate total count for dispatch
-                  const totalCount = updatedItems.reduce((sum, item) => sum + (item.quantity || 1), 0)
-                  localStorage.setItem('cartCount', totalCount.toString())
-                  
-                  // Dispatch cart update event
-                  window.dispatchEvent(new CustomEvent('cartUpdate', {
-                    detail: { count: totalCount }
-                  }))
-                  
-                  // Show toast notification
-                  setToastMessage(`${title} sepete eklendi!`)
-                  setShowToast(true)
-                }}
-              >
-                🛒 Sepete Ekle
-              </button>
-              <button 
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-colors"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  window.location.hash = `#/odeme?urun=${encodeURIComponent(title)}`
-                }}
-              >
-                💳 Hemen Al
-              </button>
-            </div>
+                 <div className="space-y-4">
+                   <div className="flex gap-3">
+                     <button
+                       className="flex-1 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg min-zoom-safe"
+                       onClick={(e) => {
+                         e.stopPropagation()
+
+                         // Get current cart count from localStorage
+                         const currentCount = parseInt(localStorage.getItem('cartCount') || '0')
+
+                         // Save cart items to localStorage
+                         const currentItems = JSON.parse(localStorage.getItem('cartItems') || '[]')
+
+                         // Check if item already exists
+                         const existingItemIndex = currentItems.findIndex(item => item.name === title)
+
+                         let updatedItems
+                         if (existingItemIndex !== -1) {
+                           // Item exists, increase quantity
+                           updatedItems = [...currentItems]
+                           updatedItems[existingItemIndex].quantity = (updatedItems[existingItemIndex].quantity || 1) + 1
+                         } else {
+                           // New item, add to cart
+                           const newItem = { name: title, image: image, quantity: 1, price: product.price }
+                           updatedItems = [...currentItems, newItem]
+                         }
+
+                         localStorage.setItem('cartItems', JSON.stringify(updatedItems))
+
+                         // Calculate total count for dispatch
+                         const totalCount = updatedItems.reduce((sum, item) => sum + (item.quantity || 1), 0)
+                         localStorage.setItem('cartCount', totalCount.toString())
+
+                         // Dispatch cart update event
+                         window.dispatchEvent(new CustomEvent('cartUpdate', {
+                           detail: { count: totalCount }
+                         }))
+
+                         // Show toast notification
+                         setToastMessage(`${title} sepete eklendi!`)
+                         setShowToast(true)
+                       }}
+                     >
+                       🛒 Sepete Ekle
+                     </button>
+                     <button
+                       className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all transform hover:scale-105 shadow-lg min-zoom-safe"
+                       onClick={(e) => {
+                         e.stopPropagation()
+                         window.location.hash = `#/odeme?urun=${encodeURIComponent(title)}`
+                       }}
+                     >
+                       💳 Hemen Al
+                     </button>
+                   </div>
             
             <div className="text-center">
               <button className="text-sm text-gray-600 hover:text-gray-800 underline">
@@ -218,8 +218,8 @@ function Modal({isOpen, onClose, image, title, setToastMessage, setShowToast}){
           </div>
         </div>
         
-        {/* Sağ taraf - Fotoğraf */}
-        <div className="w-1/2 bg-gray-50 flex items-center justify-center p-8">
+               {/* Sağ taraf - Fotoğraf */}
+               <div className="w-full lg:w-1/2 bg-gray-50 flex items-center justify-center p-6 lg:p-8">
           <img 
             src={image} 
             alt={title}
