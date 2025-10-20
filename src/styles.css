@@ -1,0 +1,64 @@
+:root{
+  --bg:#ffffff;
+  --text:#1a1a1a;
+  --muted:#c0c0c0;
+  --border:#c0c0c0;
+  --gray:#c0c0c0;
+  /* brand */
+  --brand:#52100d;        /* deep maroon (bordo) */
+  --brand-600:#3d0909;    /* darker shade */
+  --brand-300:#7a1a1a;    /* lighter shade */
+  --brand-contrast:#ffffff;
+  --brand-grad:linear-gradient(135deg, #52100d, #2b0000);
+  /* surfaces */
+  --hero-grad:linear-gradient(135deg, #f2f2f2, #ffffff 40%, #ededed);
+  --alt-bg:linear-gradient(180deg, rgba(82,16,13,.04), rgba(192,192,192,.14));
+  --alt-bg-soft:linear-gradient(180deg, rgba(192,192,192,.16), rgba(255,255,255,0));
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg, rgba(192,192,192,.06), rgba(255,255,255,1));color:var(--text);font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+a.side-bg{background:unset}
+a{color:inherit;text-decoration:none}
+.container{max-width:1120px;margin:0 auto;padding:0 16px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-contrast);cursor:pointer}
+.btn-outline{background:transparent;color:var(--brand)}
+.btn-outline{border-color:var(--brand)}
+.btn:hover{opacity:.9}
+.badge{font-size:12px;color:var(--brand-300);text-transform:uppercase;letter-spacing:.2em}
+.nav{position:sticky;top:0;background:rgba(255,255,255,.75);backdrop-filter:saturate(200%) blur(8px);border-bottom:1px solid var(--border);z-index:10}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.nav-links{display:none;gap:20px}
+@media(min-width:768px){.nav-links{display:flex}}
+.hero{padding:72px 0;background:var(--hero-grad)}
+.grid{display:grid;gap:24px}
+@media(min-width:768px){.grid-2{grid-template-columns:1fr 1fr} .grid-4{grid-template-columns:repeat(4,1fr)}}
+.card{border:1px solid var(--border);border-radius:24px;overflow:hidden;background:#fff}
+.shadow{box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.img-rect{width:100%;height:100%;object-fit:cover;display:block}
+.aspect-3-4{aspect-ratio:3/4}
+.aspect-4-5{aspect-ratio:4/5}
+.aspect-16-9{aspect-ratio:16/9}
+.muted{color:var(--muted)}
+.section{padding:72px 0}
+.footer{padding:40px 0;border-top:1px solid var(--border);background:var(--alt-bg-soft)}
+/* brand helpers */
+.brand-text{color:var(--brand)}
+.brand-gradient{background:var(--brand-grad);color:var(--brand-contrast)}
+/* alternated section bg using brand+gray tones */
+.alt-bg{background:var(--alt-bg)}
+/* subtle card accent using gray */
+.card{background:#fff}
+.tile-accent{background:rgba(82,16,13,.05)}
+/* responsive side gradients inspired by you2 palette */
+/* remove side chrome to keep full white background */
+.site-chrome{position:relative}
+@media(min-width:1200px){
+  .site-chrome::before,.site-chrome::after{width:18vw}
+}
+/* simple hover scale */
+.hover-scale{transition:transform .4s ease}
+.hover-scale:hover{transform:scale(1.03)}
+/* stand scroll mask effect */
+.mask-layer{position:absolute;inset:0;background:linear-gradient(135deg, rgba(255,255,255,.6), transparent);pointer-events:none;border-radius:32px;transition:border-radius .3s ease}
+.stand-wrap{position:relative;border-radius:32px;overflow:hidden}
+.stand-wrap.scrolled .mask-layer{border-radius:0}
