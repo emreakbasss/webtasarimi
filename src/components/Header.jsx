@@ -106,9 +106,9 @@ export default function Header(){
       {/* Single row header: centered logo */}
       <div className="container flex items-center justify-between py-2 sm:py-3">
         <div className="flex items-center gap-4 relative">
-          <button aria-label="Menü" className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg border border-neutral-200 flex items-center gap-1 sm:gap-2" onClick={()=>setOpen(v=>!v)}>
-            <IconMenu/> <span className="text-xs sm:text-sm">MENÜ</span>
-          </button>
+                 <button aria-label="Menü" className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg border border-neutral-200 flex items-center gap-1 sm:gap-2" onClick={()=>setOpen(v=>!v)}>
+                   <IconMenu/> <span className="text-xs sm:text-sm">Menü</span>
+                 </button>
           <button className="text-xs sm:text-sm underline underline-offset-4" onClick={()=>setContactOpen(v=>!v)}>+ İletişim</button>
           <div className={`${contactOpen?'opacity-100 translate-y-0 pointer-events-auto':'opacity-0 translate-y-1 pointer-events-none'} transition absolute left-16 top-full mt-2 w-72 bg-white border border-neutral-200 rounded-xl shadow-header p-3 z-50`} onMouseLeave={()=>setContactOpen(false)}>
             <div style={{fontSize:12,color:'var(--muted)'}}>Instagram</div>
