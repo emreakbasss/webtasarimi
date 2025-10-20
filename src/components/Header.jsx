@@ -70,9 +70,9 @@ export default function Header(){
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-neutral-200 shadow-header">
       {/* Single row header: centered logo */}
-      <div className="container grid grid-cols-3 items-center py-3">
+      <div className="container grid grid-cols-3 items-center py-2 sm:py-3">
         <div className="justify-self-start relative">
-          <button className="text-sm underline underline-offset-4" onClick={()=>setContactOpen(v=>!v)}>+ Contact Us</button>
+          <button className="text-xs sm:text-sm underline underline-offset-4" onClick={()=>setContactOpen(v=>!v)}>+ Contact Us</button>
           <div className={`${contactOpen?'opacity-100 translate-y-0 pointer-events-auto':'opacity-0 -translate-y-1 pointer-events-none'} transition absolute left-0 mt-2 w-72 bg-white border border-neutral-200 rounded-xl shadow-header p-3`} onMouseLeave={()=>setContactOpen(false)}>
             <div style={{fontSize:12,color:'var(--muted)'}}>Instagram</div>
             <div style={{padding:'6px 0',borderBottom:'1px solid var(--border)'}}>@</div>
@@ -81,7 +81,7 @@ export default function Header(){
           </div>
         </div>
         <a href="#/" className="justify-self-center flex items-center">
-          <img src="./assets/logo-you1.png" alt="YOU" className="h-14 md:h-16" onError={(e)=>{e.currentTarget.style.display='none'}}/>
+          <img src="./assets/logo-you1.png" alt="YOU" className="h-10 sm:h-12 md:h-14 lg:h-16" onError={(e)=>{e.currentTarget.style.display='none'}}/>
         </a>
         <div className="justify-self-end flex items-center gap-3">
           <a href="#/sepet" aria-label="Sepetim" className="p-2 hover:text-brand"><IconCart/></a>
@@ -99,8 +99,8 @@ export default function Header(){
             </div>
           </div>
           <button className="p-2 hover:text-brand" aria-label="Ara" onClick={()=>setSearchOpen(v=>!v)}><IconSearch/></button>
-          <button aria-label="Menü" className="px-3 py-2 rounded-lg border border-neutral-200 flex items-center gap-2" onClick={()=>setOpen(v=>!v)}>
-            <IconMenu/> <span className="text-sm">MENÜ</span>
+          <button aria-label="Menü" className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg border border-neutral-200 flex items-center gap-1 sm:gap-2" onClick={()=>setOpen(v=>!v)}>
+            <IconMenu/> <span className="text-xs sm:text-sm">MENÜ</span>
           </button>
         </div>
       </div>
