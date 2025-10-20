@@ -19,7 +19,7 @@ function GalleryItem({src,alt,title,sub}){
 export default function Ikonik(){
   const [images,setImages]=useState([])
   useEffect(()=>{
-    fetch('/assets/ikonik/manifest.json').then(r=>r.ok?r.json():[]).then(list=>{
+    fetch('./assets/ikonik/manifest.json').then(r=>r.ok?r.json():[]).then(list=>{
       if(Array.isArray(list)) setImages(list)
     }).catch(()=>setImages([]))
   },[])

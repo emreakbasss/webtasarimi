@@ -33,10 +33,10 @@ export default function StandShowcase(){
         </div>
         <div>
           <div ref={ref} className="stand-wrap shadow" id="stand-video">
-            <img src="/assets/stand.jpg" alt="YOU mağaza standı" className="img-rect" style={{height:520, width:'100%', display:'block', objectFit:'cover'}} onError={(e)=>{e.currentTarget.src='https://images.unsplash.com/photo-1512467657813-16c9f88b3f19?q=80&w=1600&auto=format&fit=crop'}}/>
+            <img src="./assets/stand.jpg" alt="YOU mağaza standı" className="img-rect" style={{height:520, width:'100%', display:'block', objectFit:'cover'}} onError={(e)=>{e.currentTarget.src='https://images.unsplash.com/photo-1512467657813-16c9f88b3f19?q=80&w=1600&auto=format&fit=crop'}}/>
             <div className="mask-layer"></div>
             <div style={{position:'absolute',left:16,bottom:16,display:'flex',alignItems:'center',gap:10}}>
-              <img src="/assets/logo-you1.png" alt="YOU" style={{height:28,filter:'drop-shadow(0 2px 6px rgba(0,0,0,.2))'}} onError={(e)=>{e.currentTarget.style.display='none'}}/>
+              <img src="./assets/logo-you1.png" alt="YOU" style={{height:28,filter:'drop-shadow(0 2px 6px rgba(0,0,0,.2))'}} onError={(e)=>{e.currentTarget.style.display='none'}}/>
               <span style={{color:'#fff',background:'rgba(80,12,12,.75)',padding:'6px 10px',borderRadius:12,backdropFilter:'blur(6px)'}}>Mağaza vitrini</span>
             </div>
           </div>

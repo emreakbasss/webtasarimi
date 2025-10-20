@@ -18,7 +18,7 @@ function TabNav({active,onChange}){
 function Challenges(){
   return (
     <div className="card" style={{padding:12}}>
-      <img src="/assets/promo/you-model.jpg" alt="YOU Modeli" style={{width:'100%',height:'auto',borderRadius:12}}/>
+      <img src="./assets/promo/you-model.jpg" alt="YOU Modeli" style={{width:'100%',height:'auto',borderRadius:12}}/>
     </div>
   )
 }
@@ -39,7 +39,7 @@ function MiniGames(){
         </div>
       </div>
       <div className="card" style={{padding:12,marginTop:16}}>
-        <img src="/assets/promo/before-after.jpg" alt="Before After Germanyum" style={{width:'100%',height:'auto',borderRadius:12}}/>
+        <img src="./assets/promo/before-after.jpg" alt="Before After Germanyum" style={{width:'100%',height:'auto',borderRadius:12}}/>
       </div>
     </>
   )

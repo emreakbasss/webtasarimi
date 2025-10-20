@@ -32,7 +32,7 @@ function GroupCard({title,item}){
 export default function YouCategories(){
   const [list,setList]=useState([])
   useEffect(()=>{
-    fetch('/assets/collection/manifest.json')
+    fetch('./assets/collection/manifest.json')
       .then(r=>r.ok?r.json():[])
       .then(arr=>{ if(Array.isArray(arr)) setList(arr) })
       .catch(()=>setList([]))

@@ -14,7 +14,7 @@ export default function TopNav(){
     <div className="nav">
       <div className="container nav-row">
         <div style={{display:'flex',alignItems:'center',gap:12}}>
-          <img src="/assets/anasayfa-logo.jpg" alt="YOU" style={{height:32}} onError={(e)=>{e.currentTarget.style.display='none'}}/>
+          <img src="./assets/anasayfa-logo.jpg" alt="YOU" style={{height:32}} onError={(e)=>{e.currentTarget.style.display='none'}}/>
           <strong className="brand-text">YOU</strong>
         </div>
         <nav className="nav-links">

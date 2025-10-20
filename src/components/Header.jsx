@@ -81,7 +81,7 @@ export default function Header(){
           </div>
         </div>
         <a href="#/" className="justify-self-center flex items-center">
-          <img src="/assets/logo-you1.png" alt="YOU" className="h-14 md:h-16" onError={(e)=>{e.currentTarget.style.display='none'}}/>
+          <img src="./assets/logo-you1.png" alt="YOU" className="h-14 md:h-16" onError={(e)=>{e.currentTarget.style.display='none'}}/>
         </a>
         <div className="justify-self-end flex items-center gap-3">
           <a href="#/sepet" aria-label="Sepetim" className="p-2 hover:text-brand"><IconCart/></a>

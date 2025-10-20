@@ -1,5 +1,5 @@
 [
-  { "src": "/assets/ikonik/YOU MIRROR CASE.png", "title": "YOU MIRROR CASE", "sub": "Sesinle titreşen yansıma." },
-  { "src": "/assets/ikonik/YOU SONIC MIRROR.jpeg", "title": "YOU SONIC MIRROR", "sub": "Stilin her açıdan parlar." }
+  { "src": "./assets/ikonik/YOU MIRROR CASE.png", "title": "YOU MIRROR CASE", "sub": "Sesinle titreşen yansıma." },
+  { "src": "./assets/ikonik/YOU SONIC MIRROR.jpeg", "title": "YOU SONIC MIRROR", "sub": "Stilin her açıdan parlar." }
 ]
 

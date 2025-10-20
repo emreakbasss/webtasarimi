@@ -4,7 +4,7 @@ import ChevronRightIcon from '../icons/ChevronRightIcon.jsx'
 export default function Collections(){
   const [items,setItems]=useState([])
   useEffect(()=>{
-    fetch('/assets/collection/manifest.json')
+    fetch('./assets/collection/manifest.json')
       .then(r=>r.ok?r.json():[])
       .then(list=>{ if(Array.isArray(list)) setItems(list) })
       .catch(()=>setItems([]))
